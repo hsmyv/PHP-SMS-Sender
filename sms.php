@@ -1,12 +1,21 @@
 <?php
+
+if(isset($_POST['to']) && isset($_POST['message']) && isset($_POST['sender']) && !empty($_POST['to']) && !empty($_POST['message'])&& !isset($_POST['sender']))
+{
+
+    $form_recipient_phone = $_POST['to'];
+    $form_message = $_POST['message'];
+    $form_sender_phone =$_POST['sender'];
+
+
     $api_key = "730837dc9cdb4be28572bf2ce82362d5";
     $api_token = "";
 
 
-    $sender_phone_number = "";
-    $receiver_phone_number = "";
+    $sender_phone_number = $form_sender_phone;
+    $receiver_phone_number = $form_recipient_phone;
 
-    $message = "Hello this is a test message";
+    $message = $form_message;
 
     $receiver_phone_number = [$receiver_phone_number];
     // 17.Get number.mp4  
@@ -38,3 +47,7 @@
     }
 
     curl_close($ch);
+}else{
+    echo "Please fill in the form";
+}
+?>
